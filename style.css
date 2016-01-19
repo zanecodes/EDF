@@ -1,0 +1,63 @@
+body {
+  font: 16px sans-serif;
+}
+
+#table {
+  margin: 100px;
+  padding: 25px 0;
+  position: relative;
+}
+
+.task {
+  height: 20px;
+  line-height: 20px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.name {
+  margin-right: 25px;
+  position: absolute;
+  right: 100%;
+  text-align: right;
+}
+
+#labels {
+  display: flex;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+
+.column {
+  flex: 1;
+  height: 100%;
+}
+
+.line {
+  height: 100%;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.label {
+  padding-top: 10px;
+  padding-left: 5px;
+  border-left: 1px solid black;
+}
+
+#axis {
+  position: absolute;
+  top: 100%;
+  width: 100px;
+  padding-top: 11px;
+}
+
+.job {
+  box-sizing: border-box;
+  height: 100%;
+  border: 1px solid black;
+  position: absolute;
+}

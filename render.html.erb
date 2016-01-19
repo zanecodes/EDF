@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Schedule</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="table">
+    <div id="labels">
+      <% (0...@finish).step(10) do |n| %>
+        <div class="column"><div class="line"></div><div class="label"><%= n %></div></div>
+      <% end %>
+      <div id="axis">Time (ms)</div>
+    </div>
+    <% @tasks.each do |task, period| %>
+      <div class="task">
+        <div class="name"><%= task.name %></div>
+        <% i = 0 %>
+        <% (0...@finish).step(period) do |time| %>
+          <% i += 1 %>
+          <div class="job" style="background: <%= color(task.name) %>; left: <%= time.to_f * 100 / @finish %>%; width: <%= task.runtime.to_f * 100 / @finish %>%">
+            <%= task.name %><%= i %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="task">
+      <div class="name">EDF</div>
+      <% i = Hash.new(0) %>
+      <% @scheduler.timeline.each do |job, ranges| %>
+        <% i[job.task] += 1 %>
+        <% ranges.each do |range| %>
+          <div class="job" style="background: <%= color(job.task.name) %>; left: <%= range.begin.to_f * 100 / @finish %>%; width: <%= (range.end - range.begin).to_f * 100 / @finish %>%">
+            <%= job.task.name %><%= i[job.task] %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>

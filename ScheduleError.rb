@@ -1,0 +1,2 @@
+class ScheduleError < RuntimeError
+end
